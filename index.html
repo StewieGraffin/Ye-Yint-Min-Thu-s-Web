@@ -1,193 +1,313 @@
+```html
 <!DOCTYPE html>
-
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>シンプルWebサイト</title>
+    <title>Snake Game</title>
 
-```
-<style>
-    /* ページ全体 */
-    body {
-        margin: 0;
-        padding-bottom: 140px;
-        font-family: Arial, sans-serif;
-        background-color: #f5f5f5;
-        color: #333;
-    }
+    <style>
+        * {
+            box-sizing: border-box;
+        }
 
-    /* header */
-    header {
-        background-color: #440000;
-        color: white;
-        text-align: center;
-        padding: 25px;
-    }
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #111827;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
 
-    header h1 {
-        color: #ffff00;
-        margin: 0;
-    }
+        .game-container {
+            text-align: center;
+        }
 
-    /* main */
-    main {
-        max-width: 800px;
-        margin: 40px auto;
-        padding: 0 20px;
-        color: #cc0000;
-    }
+        h1 {
+            margin-bottom: 10px;
+            color: #22c55e;
+        }
 
-    /* セクション */
-    section {
-        background-color: #440000;
-        padding: 25px;
-        margin-bottom: 25px;
-        border-radius: 10px;
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        .score {
+            font-size: 24px;
+            margin-bottom: 15px;
+        }
 
-        /* アニメーション */
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
+        canvas {
+            background: #1f2937;
+            border: 4px solid #22c55e;
+            border-radius: 8px;
+            display: block;
+            margin: auto;
+        }
 
-    /* マウスを乗せたとき */
-    section:hover {
-        transform: translateY(-8px);
-        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
-    }
+        button {
+            margin-top: 20px;
+            padding: 12px 25px;
+            font-size: 18px;
+            border: none;
+            border-radius: 8px;
+            background: #22c55e;
+            color: white;
+            cursor: pointer;
+        }
 
-    section h2 {
-        color: white;
-    }
+        button:hover {
+            background: #16a34a;
+        }
 
-    section p {
-        color: white;
-        line-height: 1.8;
-    }
+        .controls {
+            margin-top: 20px;
+            display: grid;
+            grid-template-columns: repeat(3, 60px);
+            gap: 5px;
+            justify-content: center;
+        }
 
-    h2 {
-        border-left: 5px solid #ffff00;
-        padding-left: 10px;
-    }
+        .controls button {
+            margin: 0;
+            padding: 15px;
+            font-size: 20px;
+        }
 
-    /* 挨拶ボタン */
-    .hello-button {
-        display: block;
-        margin: 30px auto;
-        padding: 12px 30px;
-        background-color: #cc0000;
-        color: white;
-        border: none;
-        border-radius: 25px;
-        font-size: 16px;
-        cursor: pointer;
-        transition: 0.3s;
-    }
+        .up {
+            grid-column: 2;
+        }
 
-    .hello-button:hover {
-        background-color: #990000;
-        transform: scale(1.05);
-    }
+        .left {
+            grid-column: 1;
+            grid-row: 2;
+        }
 
-    /* 挨拶メッセージ */
-    #message {
-        text-align: center;
-        font-size: 20px;
-        font-weight: bold;
-        color: #cc0000;
-        min-height: 30px;
-    }
+        .down {
+            grid-column: 2;
+            grid-row: 2;
+        }
 
-    /* footer */
-    footer {
-        position: fixed;
-        bottom: 0;
-        left: 0;
-        width: 100%;
-        background-color: #440000;
-        color: white;
-        text-align: center;
-        padding: 15px 0;
-    }
+        .right {
+            grid-column: 3;
+            grid-row: 2;
+        }
 
-    footer p {
-        margin: 5px;
-    }
-
-    /* SNSリンク */
-    .social-links a {
-        color: white;
-        margin: 0 10px;
-        text-decoration: none;
-        transition: 0.3s;
-    }
-
-    .social-links a:hover {
-        color: #ffff00;
-        text-decoration: underline;
-    }
-</style>
-```
-
+        #message {
+            margin-top: 15px;
+            font-size: 20px;
+            color: #f87171;
+            min-height: 25px;
+        }
+    </style>
 </head>
 
 <body>
 
-```
-<!-- ヘッダー -->
-<header>
-    <h1>About Me</h1>
-</header>
+<div class="game-container">
 
-<!-- メインコンテンツ -->
-<main>
+    <h1>🐍 Snake Game</h1>
 
-    <section>
-        <h2>自己紹介</h2>
-        <p>
-            初めまして、イェインミンテュです。
-        </p>
-    </section>
-
-    <section>
-        <h2>趣味・好きなこと</h2>
-        <p>
-            スポーツや体を動かすことが好きです。
-            Webサイト制作にも興味があります。
-        </p>
-    </section>
-
-    <!-- 追加した機能 -->
-    <button class="hello-button" onclick="showMessage()">
-        終了！
-    </button>
-
-    <p id="message"></p>
-    
-    <img src="https://github.com/StewieGraffin/Ye-Yint-Min-Thu-s-Web/blob/main/cupcake.jpg?raw=true" alt="サンプル">
-</main>
-
-<!-- フッター -->
-<footer>
-    <p>お問い合わせ：example@example.com</p>
-
-    <div class="social-links">
-        <a href="#">X（Twitter）</a>
-        <a href="#">Instagram</a>
-        <a href="#">Facebook</a>
+    <div class="score">
+        Score: <span id="score">0</span>
     </div>
 
-    <p>&copy; 2026 My Web Site</p>
-</footer>
+    <canvas id="gameCanvas" width="400" height="400"></canvas>
 
-<!-- JavaScript -->
+    <div id="message"></div>
+
+    <button onclick="restartGame()">Restart</button>
+
+    <div class="controls">
+        <button class="up" onclick="changeDirection('up')">⬆️</button>
+        <button class="left" onclick="changeDirection('left')">⬅️</button>
+        <button class="down" onclick="changeDirection('down')">⬇️</button>
+        <button class="right" onclick="changeDirection('right')">➡️</button>
+    </div>
+
+</div>
+
 <script>
-    function showMessage() {
-        document.getElementById("message").textContent =
-            "最後までお読みいただきありがとうございました。";
+    const canvas = document.getElementById("gameCanvas");
+    const ctx = canvas.getContext("2d");
+
+    const box = 20;
+    const canvasSize = 400;
+
+    let snake;
+    let food;
+    let direction;
+    let nextDirection;
+    let score;
+    let game;
+
+    function startGame() {
+        snake = [
+            { x: 200, y: 200 },
+            { x: 180, y: 200 },
+            { x: 160, y: 200 }
+        ];
+
+        direction = "right";
+        nextDirection = "right";
+        score = 0;
+
+        document.getElementById("score").textContent = score;
+        document.getElementById("message").textContent = "";
+
+        createFood();
+
+        clearInterval(game);
+        game = setInterval(drawGame, 100);
     }
+
+    function drawGame() {
+        direction = nextDirection;
+
+        ctx.fillStyle = "#1f2937";
+        ctx.fillRect(0, 0, canvasSize, canvasSize);
+
+        // 食べ物
+        ctx.fillStyle = "#ef4444";
+        ctx.fillRect(food.x, food.y, box, box);
+
+        // 蛇
+        snake.forEach((part, index) => {
+            ctx.fillStyle = index === 0 ? "#22c55e" : "#4ade80";
+            ctx.fillRect(part.x, part.y, box, box);
+
+            ctx.strokeStyle = "#166534";
+            ctx.strokeRect(part.x, part.y, box, box);
+        });
+
+        let head = {
+            x: snake[0].x,
+            y: snake[0].y
+        };
+
+        if (direction === "up") {
+            head.y -= box;
+        }
+
+        if (direction === "down") {
+            head.y += box;
+        }
+
+        if (direction === "left") {
+            head.x -= box;
+        }
+
+        if (direction === "right") {
+            head.x += box;
+        }
+
+        // 壁に衝突
+        if (
+            head.x < 0 ||
+            head.y < 0 ||
+            head.x >= canvasSize ||
+            head.y >= canvasSize
+        ) {
+            gameOver();
+            return;
+        }
+
+        // 自分自身に衝突
+        for (let i = 0; i < snake.length; i++) {
+            if (
+                head.x === snake[i].x &&
+                head.y === snake[i].y
+            ) {
+                gameOver();
+                return;
+            }
+        }
+
+        snake.unshift(head);
+
+        // 食べ物を食べた
+        if (
+            head.x === food.x &&
+            head.y === food.y
+        ) {
+            score++;
+            document.getElementById("score").textContent = score;
+            createFood();
+        } else {
+            snake.pop();
+        }
+    }
+
+    function createFood() {
+        food = {
+            x: Math.floor(Math.random() * (canvasSize / box)) * box,
+            y: Math.floor(Math.random() * (canvasSize / box)) * box
+        };
+
+        // 蛇と食べ物が重ならないようにする
+        for (let part of snake) {
+            if (part.x === food.x && part.y === food.y) {
+                createFood();
+                return;
+            }
+        }
+    }
+
+    function changeDirection(newDirection) {
+
+        if (newDirection === "up" && direction !== "down") {
+            nextDirection = "up";
+        }
+
+        if (newDirection === "down" && direction !== "up") {
+            nextDirection = "down";
+        }
+
+        if (newDirection === "left" && direction !== "right") {
+            nextDirection = "left";
+        }
+
+        if (newDirection === "right" && direction !== "left") {
+            nextDirection = "right";
+        }
+    }
+
+    function gameOver() {
+        clearInterval(game);
+
+        document.getElementById("message").textContent =
+            "💥 Game Over!";
+
+        // 少し遅れて再スタート可能
+    }
+
+    function restartGame() {
+        startGame();
+    }
+
+    // キーボード操作
+    document.addEventListener("keydown", function(event) {
+
+        if (event.key === "ArrowUp") {
+            changeDirection("up");
+        }
+
+        if (event.key === "ArrowDown") {
+            changeDirection("down");
+        }
+
+        if (event.key === "ArrowLeft") {
+            changeDirection("left");
+        }
+
+        if (event.key === "ArrowRight") {
+            changeDirection("right");
+        }
+    });
+
+    // ゲーム開始
+    startGame();
 </script>
-```
 
 </body>
 </html>
+```
