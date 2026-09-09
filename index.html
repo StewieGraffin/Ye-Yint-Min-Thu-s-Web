@@ -5,10 +5,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>クリックゲーム</title>
+    <title>猫の世界</title>
 
     <style>
-
         /* 全体 */
         * {
             margin: 0;
@@ -18,201 +17,368 @@
 
         body {
             font-family: Arial, "Yu Gothic", sans-serif;
-            background: #e8f5e9;
+            background-color: #fff8f0;
+            color: #333;
+            line-height: 1.8;
+        }
+
+        /* ヘッダー */
+        header {
+            background-color: #ff9f68;
+            color: white;
+            padding: 20px 50px;
+
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        header h1 {
+            font-size: 28px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin-left: 25px;
+            font-weight: bold;
+        }
+
+        nav a:hover {
+            text-decoration: underline;
+        }
+
+        /* メインビジュアル */
+        .hero {
+            height: 450px;
+
+            background:
+                linear-gradient(
+                    rgba(0, 0, 0, 0.3),
+                    rgba(0, 0, 0, 0.3)
+                ),
+                url("https://images.unsplash.com/photo-1518791841217-8f162f1e1131?auto=format&fit=crop&w=1600&q=80");
+
+            background-size: cover;
+            background-position: center;
 
             display: flex;
             justify-content: center;
             align-items: center;
 
-            min-height: 100vh;
-        }
-
-        /* ゲーム画面 */
-        .game {
-            width: 600px;
-            max-width: 90%;
-
-            background: white;
-            padding: 40px;
-
-            border-radius: 20px;
-
             text-align: center;
-
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            color: white;
         }
 
-        /* タイトル */
-        h1 {
-            color: #2e7d32;
+        .hero h2 {
+            font-size: 55px;
             margin-bottom: 10px;
         }
 
-        .description {
-            margin-bottom: 30px;
-            color: #555;
+        .hero p {
+            font-size: 22px;
         }
 
-        /* ゲームエリア */
-        .game-area {
-            position: relative;
+        /* メイン */
+        main {
+            max-width: 1100px;
+            margin: auto;
+            padding: 50px 20px;
+        }
 
-            height: 300px;
+        section {
+            margin-bottom: 60px;
+        }
 
-            background: #f1f8e9;
+        section h2 {
+            text-align: center;
+            color: #e8753d;
+            font-size: 32px;
+            margin-bottom: 25px;
+        }
 
-            border: 3px solid #81c784;
+        /* 猫について */
+        .about {
+            max-width: 800px;
+            margin: auto;
+            text-align: center;
+            font-size: 18px;
+        }
+
+        /* 猫の種類 */
+        .cats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+        }
+
+        .card {
+            background-color: white;
+            border-radius: 15px;
+            overflow: hidden;
+
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.12);
+
+            transition: transform 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-8px);
+        }
+
+        .card img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+        }
+
+        .card-content {
+            padding: 20px;
+        }
+
+        .card-content h3 {
+            color: #e8753d;
+            margin-bottom: 10px;
+            font-size: 22px;
+        }
+
+        /* 猫の豆知識 */
+        .tips {
+            background-color: white;
+            padding: 30px;
 
             border-radius: 15px;
 
-            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
         }
 
-        /* 説明 */
-        .start-message {
-            margin-top: 30px;
-            font-size: 18px;
-            color: #555;
+        .tips ul {
+            list-style: none;
         }
 
-        /* チェックボックスを非表示 */
-        input {
-            display: none;
+        .tips li {
+            padding: 12px;
+            border-bottom: 1px solid #eee;
         }
 
-        /* ターゲットボタン */
-        .target {
-            position: absolute;
+        .tips li:last-child {
+            border-bottom: none;
+        }
 
-            top: 120px;
-            left: 250px;
-
-            width: 70px;
-            height: 70px;
-
-            background: #e53935;
-
-            border-radius: 50%;
-
-            cursor: pointer;
-
-            display: flex;
-            justify-content: center;
-            align-items: center;
-
+        /* フッター */
+        footer {
+            background-color: #3d3d3d;
             color: white;
-            font-size: 30px;
-            font-weight: bold;
-
-            transition: 0.2s;
+            text-align: center;
+            padding: 30px 20px;
         }
 
-        /* クリックしたらターゲットを消す */
-        #hit:checked ~ .game-area .target {
-            display: none;
-        }
-
-        /* クリック後のメッセージ */
-        #hit:checked ~ .game-area .success {
-            display: block;
-        }
-
-        .success {
-            display: none;
-
-            position: absolute;
-
-            top: 110px;
-            left: 0;
-            right: 0;
-
-            color: #2e7d32;
-
-            font-size: 28px;
-            font-weight: bold;
-        }
-
-        /* リスタート */
-        .restart {
-            display: inline-block;
-
-            margin-top: 25px;
-
-            padding: 12px 30px;
-
-            background: #2e7d32;
+        footer a {
             color: white;
-
             text-decoration: none;
-
-            border-radius: 8px;
-
-            font-weight: bold;
+            margin: 0 10px;
         }
 
-        .restart:hover {
-            background: #1b5e20;
+        footer a:hover {
+            color: #ff9f68;
         }
 
-        /* ルール */
-        .rules {
-            margin-top: 25px;
+        /* スマートフォン対応 */
+        @media (max-width: 768px) {
 
-            padding: 15px;
+            header {
+                flex-direction: column;
+                gap: 15px;
+                padding: 20px;
+            }
 
-            background: #fffde7;
+            nav a {
+                margin: 0 8px;
+            }
 
-            border-radius: 10px;
+            .hero {
+                height: 350px;
+            }
 
-            color: #555;
+            .hero h2 {
+                font-size: 40px;
+            }
+
+            .hero p {
+                font-size: 18px;
+            }
+
+            .cats {
+                grid-template-columns: 1fr;
+            }
         }
-
     </style>
 </head>
 
 <body>
 
-    <div class="game">
+    <!-- ヘッダー -->
+    <header>
 
-        <h1>🎯 クリックゲーム</h1>
+        <h1>🐱 猫の世界</h1>
 
-        <p class="description">
-            赤いボタンをクリックしよう！
-        </p>
+        <nav>
+            <a href="#about">猫について</a>
+            <a href="#cats">猫の種類</a>
+            <a href="#tips">豆知識</a>
+        </nav>
 
-        <!-- ゲーム開始用 -->
-        <input type="checkbox" id="hit">
+    </header>
 
-        <div class="game-area">
 
-            <!-- ターゲット -->
-            <label for="hit" class="target">
-                ●
-            </label>
+    <!-- メインビジュアル -->
+    <div class="hero">
 
-            <!-- 成功メッセージ -->
-            <div class="success">
-                🎉 HIT! 🎉
-            </div>
+        <div>
+            <h2>猫ってかわいい！</h2>
 
-        </div>
-
-        <p class="start-message">
-            赤い丸をクリックしてゲームクリア！
-        </p>
-
-        <!-- リセット -->
-        <a href="" class="restart">
-            🔄 もう一度遊ぶ
-        </a>
-
-        <div class="rules">
-            <strong>ゲームルール</strong>
-            <br>
-            赤いターゲットをクリックするとクリアです！
+            <p>
+                自由気ままで、とっても魅力的な動物
+            </p>
         </div>
 
     </div>
+
+
+    <!-- メインコンテンツ -->
+    <main>
+
+        <!-- 猫について -->
+        <section id="about">
+
+            <h2>🐾 猫について</h2>
+
+            <p class="about">
+                猫は昔から人間と一緒に暮らしてきた人気の動物です。
+                大きな目やふわふわの毛、かわいい仕草が魅力です。
+                甘えん坊な猫もいれば、一人で過ごすことが好きな猫もいます。
+                それぞれ個性があるところも猫の魅力です。
+            </p>
+
+        </section>
+
+
+        <!-- 猫の種類 -->
+        <section id="cats">
+
+            <h2>🐈 人気の猫</h2>
+
+            <div class="cats">
+
+                <!-- 茶トラ -->
+                <div class="card">
+
+                    <img
+                        src="https://images.unsplash.com/photo-1519052537078-e6302a4968d4?auto=format&fit=crop&w=800&q=80"
+                        alt="茶色の猫">
+
+                    <div class="card-content">
+
+                        <h3>🐱 茶トラ</h3>
+
+                        <p>
+                            明るい茶色の模様が特徴的な猫。
+                            元気で人懐っこい性格の猫も多いと言われています。
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <!-- 白猫 -->
+                <div class="card">
+
+                    <img
+                        src="https://images.unsplash.com/photo-1573865526739-10659fec78a5?auto=format&fit=crop&w=800&q=80"
+                        alt="白い猫">
+
+                    <div class="card-content">
+
+                        <h3>🤍 白猫</h3>
+
+                        <p>
+                            真っ白な毛が美しい猫。
+                            上品でかわいらしい印象があります。
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <!-- 黒猫 -->
+                <div class="card">
+
+                    <img
+                        src="https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?auto=format&fit=crop&w=800&q=80"
+                        alt="黒猫">
+
+                    <div class="card-content">
+
+                        <h3>🖤 黒猫</h3>
+
+                        <p>
+                            美しい黒い毛が特徴の猫。
+                            ミステリアスな雰囲気も魅力の一つです。
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- 豆知識 -->
+        <section id="tips">
+
+            <h2>💡 猫の豆知識</h2>
+
+            <div class="tips">
+
+                <ul>
+
+                    <li>🐾 猫は高い場所が好きです。</li>
+
+                    <li>😴 猫は一日の多くの時間を寝て過ごします。</li>
+
+                    <li>👂 猫の耳はさまざまな方向に動かすことができます。</li>
+
+                    <li>🐈 猫は優れたバランス感覚を持っています。</li>
+
+                    <li>❤️ 猫はゴロゴロと喉を鳴らしてリラックスすることがあります。</li>
+
+                </ul>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- フッター -->
+    <footer>
+
+        <p>
+            © 2026 猫の世界
+        </p>
+
+        <p>
+            <a href="#">Instagram</a>
+            <a href="#">X</a>
+            <a href="#">Facebook</a>
+        </p>
+
+    </footer>
 
 </body>
 </html>
