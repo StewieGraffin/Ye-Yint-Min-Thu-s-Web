@@ -1,11 +1,11 @@
 ```html
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ja">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Discover Myanmar</title>
+    <title>ミャンマーの魅力</title>
 
     <style>
         /* ===== 全体 ===== */
@@ -16,18 +16,19 @@
         }
 
         body {
-            font-family: Arial, sans-serif;
-            line-height: 1.6;
+            font-family: "Yu Gothic", "Hiragino Kaku Gothic ProN",
+                         Meiryo, sans-serif;
+            line-height: 1.8;
             color: #333;
             background-color: #f5f5f5;
         }
 
-        /* ===== Header ===== */
+        /* ===== ヘッダー ===== */
         header {
             background: linear-gradient(135deg, #f4c542, #e63946);
             color: white;
             text-align: center;
-            padding: 30px 20px;
+            padding: 40px 20px;
         }
 
         header h1 {
@@ -39,7 +40,7 @@
             font-size: 18px;
         }
 
-        /* ===== Navigation ===== */
+        /* ===== ナビゲーション ===== */
         nav {
             background-color: #333;
             text-align: center;
@@ -57,7 +58,7 @@
             color: #f4c542;
         }
 
-        /* ===== Main ===== */
+        /* ===== メイン ===== */
         main {
             max-width: 1000px;
             margin: 40px auto;
@@ -76,13 +77,15 @@
             color: #e63946;
             margin-bottom: 15px;
             font-size: 28px;
+            border-left: 5px solid #f4c542;
+            padding-left: 10px;
         }
 
         section p {
             margin-bottom: 10px;
         }
 
-        /* ===== Places ===== */
+        /* ===== 観光地 ===== */
         .places {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -107,7 +110,7 @@
             font-size: 14px;
         }
 
-        /* ===== Footer ===== */
+        /* ===== フッター ===== */
         footer {
             background-color: #222;
             color: white;
@@ -128,6 +131,7 @@
 
         /* ===== スマートフォン対応 ===== */
         @media (max-width: 700px) {
+
             header h1 {
                 font-size: 30px;
             }
@@ -140,97 +144,102 @@
             .places {
                 grid-template-columns: 1fr;
             }
+
+            section {
+                padding: 20px;
+            }
         }
     </style>
 </head>
 
 <body>
 
-    <!-- Header -->
+    <!-- ヘッダー -->
     <header>
-        <h1>🇲🇲 Discover Myanmar</h1>
-        <p>Explore the beauty, culture, and history of Myanmar</p>
+        <h1>🇲🇲 ミャンマーの魅力</h1>
+        <p>美しい自然・豊かな文化・長い歴史を持つ国</p>
     </header>
 
-    <!-- Navigation -->
+    <!-- ナビゲーション -->
     <nav>
-        <a href="#about">About Myanmar</a>
-        <a href="#places">Famous Places</a>
-        <a href="#culture">Culture</a>
+        <a href="#about">ミャンマーについて</a>
+        <a href="#places">有名な観光地</a>
+        <a href="#culture">文化</a>
     </nav>
 
-    <!-- Main -->
+    <!-- メインコンテンツ -->
     <main>
 
-        <!-- About -->
+        <!-- ミャンマーについて -->
         <section id="about">
-            <h2>About Myanmar</h2>
+            <h2>ミャンマーについて</h2>
 
             <p>
-                Myanmar is a beautiful country located in Southeast Asia.
-                It is known for its rich history, traditional culture,
-                beautiful temples, and friendly people.
+                ミャンマーは東南アジアに位置する美しい国です。
+                豊かな自然や歴史的な建造物、独自の文化が魅力です。
             </p>
 
             <p>
-                The country has a diverse landscape, including mountains,
-                rivers, beaches, and ancient cities.
+                山や川、湖、ビーチなど、さまざまな自然を見ることができます。
+                また、多くの仏教寺院やパゴダがあり、歴史を感じることができます。
             </p>
         </section>
 
-        <!-- Famous Places -->
+        <!-- 有名な観光地 -->
         <section id="places">
-            <h2>Famous Places</h2>
+            <h2>有名な観光地</h2>
 
             <div class="places">
 
                 <div class="place">
-                    <h3>Bagan</h3>
+                    <h3>バガン</h3>
                     <p>
-                        Bagan is famous for its thousands of ancient
-                        Buddhist temples and pagodas.
+                        数千もの古代寺院やパゴダが残る、
+                        ミャンマーを代表する歴史的な観光地です。
                     </p>
                 </div>
 
                 <div class="place">
-                    <h3>Yangon</h3>
+                    <h3>ヤンゴン</h3>
                     <p>
-                        Yangon is Myanmar's largest city and is home
-                        to the famous Shwedagon Pagoda.
+                        ミャンマー最大級の都市の一つです。
+                        黄金に輝くシュエダゴン・パゴダが有名です。
                     </p>
                 </div>
 
                 <div class="place">
-                    <h3>Inle Lake</h3>
+                    <h3>インレー湖</h3>
                     <p>
-                        Inle Lake is famous for its beautiful scenery
-                        and unique traditional fishing culture.
+                        美しい湖と独特な伝統文化で知られています。
+                        足で舟をこぐ漁師も有名です。
                     </p>
                 </div>
 
             </div>
         </section>
 
-        <!-- Culture -->
+        <!-- 文化 -->
         <section id="culture">
-            <h2>Myanmar Culture</h2>
+            <h2>ミャンマーの文化</h2>
 
             <p>
-                Myanmar has a rich cultural heritage influenced by
-                Buddhism and many different ethnic groups.
+                ミャンマーには、仏教を中心とした豊かな文化があります。
+                また、多くの民族が暮らしているため、地域によって
+                さまざまな伝統や文化があります。
             </p>
 
             <p>
-                Traditional festivals, food, music, dance, and
-                handicrafts are important parts of Myanmar culture.
+                伝統的なお祭り、料理、音楽、ダンス、工芸品なども
+                ミャンマー文化の大切な一部です。
             </p>
         </section>
 
     </main>
 
-    <!-- Footer -->
+    <!-- フッター -->
     <footer>
-        <p>Contact: myanmar@example.com</p>
+
+        <p>お問い合わせ：myanmar@example.com</p>
 
         <p>
             <a href="#">Facebook</a>
@@ -238,7 +247,8 @@
             <a href="#">YouTube</a>
         </p>
 
-        <p>&copy; 2026 Discover Myanmar</p>
+        <p>&copy; 2026 ミャンマーの魅力</p>
+
     </footer>
 
 </body>
