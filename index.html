@@ -1,14 +1,14 @@
 ```html
 <!DOCTYPE html>
-<html lang="ja">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>猫の世界</title>
+    <title>Discover Myanmar</title>
 
     <style>
-        /* 全体 */
+        /* ===== 全体 ===== */
         * {
             margin: 0;
             padding: 0;
@@ -16,199 +16,128 @@
         }
 
         body {
-            font-family: Arial, "Yu Gothic", sans-serif;
-            background-color: #fff8f0;
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
             color: #333;
-            line-height: 1.8;
+            background-color: #f5f5f5;
         }
 
-        /* ヘッダー */
+        /* ===== Header ===== */
         header {
-            background-color: #ff9f68;
-            color: white;
-            padding: 20px 50px;
-
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        header h1 {
-            font-size: 28px;
-        }
-
-        nav a {
-            color: white;
-            text-decoration: none;
-            margin-left: 25px;
-            font-weight: bold;
-        }
-
-        nav a:hover {
-            text-decoration: underline;
-        }
-
-        /* メインビジュアル */
-        .hero {
-            height: 450px;
-
-            background:
-                linear-gradient(
-                    rgba(0, 0, 0, 0.3),
-                    rgba(0, 0, 0, 0.3)
-                ),
-                url("https://images.unsplash.com/photo-1518791841217-8f162f1e1131?auto=format&fit=crop&w=1600&q=80");
-
-            background-size: cover;
-            background-position: center;
-
-            display: flex;
-            justify-content: center;
-            align-items: center;
-
-            text-align: center;
-            color: white;
-        }
-
-        .hero h2 {
-            font-size: 55px;
-            margin-bottom: 10px;
-        }
-
-        .hero p {
-            font-size: 22px;
-        }
-
-        /* メイン */
-        main {
-            max-width: 1100px;
-            margin: auto;
-            padding: 50px 20px;
-        }
-
-        section {
-            margin-bottom: 60px;
-        }
-
-        section h2 {
-            text-align: center;
-            color: #e8753d;
-            font-size: 32px;
-            margin-bottom: 25px;
-        }
-
-        /* 猫について */
-        .about {
-            max-width: 800px;
-            margin: auto;
-            text-align: center;
-            font-size: 18px;
-        }
-
-        /* 猫の種類 */
-        .cats {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 25px;
-        }
-
-        .card {
-            background-color: white;
-            border-radius: 15px;
-            overflow: hidden;
-
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.12);
-
-            transition: transform 0.3s;
-        }
-
-        .card:hover {
-            transform: translateY(-8px);
-        }
-
-        .card img {
-            width: 100%;
-            height: 220px;
-            object-fit: cover;
-        }
-
-        .card-content {
-            padding: 20px;
-        }
-
-        .card-content h3 {
-            color: #e8753d;
-            margin-bottom: 10px;
-            font-size: 22px;
-        }
-
-        /* 猫の豆知識 */
-        .tips {
-            background-color: white;
-            padding: 30px;
-
-            border-radius: 15px;
-
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-        }
-
-        .tips ul {
-            list-style: none;
-        }
-
-        .tips li {
-            padding: 12px;
-            border-bottom: 1px solid #eee;
-        }
-
-        .tips li:last-child {
-            border-bottom: none;
-        }
-
-        /* フッター */
-        footer {
-            background-color: #3d3d3d;
+            background: linear-gradient(135deg, #f4c542, #e63946);
             color: white;
             text-align: center;
             padding: 30px 20px;
         }
 
-        footer a {
+        header h1 {
+            font-size: 40px;
+            margin-bottom: 10px;
+        }
+
+        header p {
+            font-size: 18px;
+        }
+
+        /* ===== Navigation ===== */
+        nav {
+            background-color: #333;
+            text-align: center;
+            padding: 15px;
+        }
+
+        nav a {
             color: white;
+            text-decoration: none;
+            margin: 0 20px;
+            font-weight: bold;
+        }
+
+        nav a:hover {
+            color: #f4c542;
+        }
+
+        /* ===== Main ===== */
+        main {
+            max-width: 1000px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        section {
+            background-color: white;
+            margin-bottom: 30px;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        section h2 {
+            color: #e63946;
+            margin-bottom: 15px;
+            font-size: 28px;
+        }
+
+        section p {
+            margin-bottom: 10px;
+        }
+
+        /* ===== Places ===== */
+        .places {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .place {
+            background-color: #fafafa;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            border: 1px solid #ddd;
+        }
+
+        .place h3 {
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .place p {
+            font-size: 14px;
+        }
+
+        /* ===== Footer ===== */
+        footer {
+            background-color: #222;
+            color: white;
+            text-align: center;
+            padding: 25px;
+            margin-top: 40px;
+        }
+
+        footer a {
+            color: #f4c542;
             text-decoration: none;
             margin: 0 10px;
         }
 
         footer a:hover {
-            color: #ff9f68;
+            text-decoration: underline;
         }
 
-        /* スマートフォン対応 */
-        @media (max-width: 768px) {
-
-            header {
-                flex-direction: column;
-                gap: 15px;
-                padding: 20px;
+        /* ===== スマートフォン対応 ===== */
+        @media (max-width: 700px) {
+            header h1 {
+                font-size: 30px;
             }
 
             nav a {
-                margin: 0 8px;
+                display: block;
+                margin: 8px 0;
             }
 
-            .hero {
-                height: 350px;
-            }
-
-            .hero h2 {
-                font-size: 40px;
-            }
-
-            .hero p {
-                font-size: 18px;
-            }
-
-            .cats {
+            .places {
                 grid-template-columns: 1fr;
             }
         }
@@ -217,167 +146,99 @@
 
 <body>
 
-    <!-- ヘッダー -->
+    <!-- Header -->
     <header>
-
-        <h1>🐱 猫の世界</h1>
-
-        <nav>
-            <a href="#about">猫について</a>
-            <a href="#cats">猫の種類</a>
-            <a href="#tips">豆知識</a>
-        </nav>
-
+        <h1>🇲🇲 Discover Myanmar</h1>
+        <p>Explore the beauty, culture, and history of Myanmar</p>
     </header>
 
+    <!-- Navigation -->
+    <nav>
+        <a href="#about">About Myanmar</a>
+        <a href="#places">Famous Places</a>
+        <a href="#culture">Culture</a>
+    </nav>
 
-    <!-- メインビジュアル -->
-    <div class="hero">
-
-        <div>
-            <h2>猫ってかわいい！</h2>
-
-            <p>
-                自由気ままで、とっても魅力的な動物
-            </p>
-        </div>
-
-    </div>
-
-
-    <!-- メインコンテンツ -->
+    <!-- Main -->
     <main>
 
-        <!-- 猫について -->
+        <!-- About -->
         <section id="about">
+            <h2>About Myanmar</h2>
 
-            <h2>🐾 猫について</h2>
-
-            <p class="about">
-                猫は昔から人間と一緒に暮らしてきた人気の動物です。
-                大きな目やふわふわの毛、かわいい仕草が魅力です。
-                甘えん坊な猫もいれば、一人で過ごすことが好きな猫もいます。
-                それぞれ個性があるところも猫の魅力です。
+            <p>
+                Myanmar is a beautiful country located in Southeast Asia.
+                It is known for its rich history, traditional culture,
+                beautiful temples, and friendly people.
             </p>
 
+            <p>
+                The country has a diverse landscape, including mountains,
+                rivers, beaches, and ancient cities.
+            </p>
         </section>
 
+        <!-- Famous Places -->
+        <section id="places">
+            <h2>Famous Places</h2>
 
-        <!-- 猫の種類 -->
-        <section id="cats">
+            <div class="places">
 
-            <h2>🐈 人気の猫</h2>
-
-            <div class="cats">
-
-                <!-- 茶トラ -->
-                <div class="card">
-
-                    <img
-                        src="https://images.unsplash.com/photo-1519052537078-e6302a4968d4?auto=format&fit=crop&w=800&q=80"
-                        alt="茶色の猫">
-
-                    <div class="card-content">
-
-                        <h3>🐱 茶トラ</h3>
-
-                        <p>
-                            明るい茶色の模様が特徴的な猫。
-                            元気で人懐っこい性格の猫も多いと言われています。
-                        </p>
-
-                    </div>
-
+                <div class="place">
+                    <h3>Bagan</h3>
+                    <p>
+                        Bagan is famous for its thousands of ancient
+                        Buddhist temples and pagodas.
+                    </p>
                 </div>
 
-
-                <!-- 白猫 -->
-                <div class="card">
-
-                    <img
-                        src="https://images.unsplash.com/photo-1573865526739-10659fec78a5?auto=format&fit=crop&w=800&q=80"
-                        alt="白い猫">
-
-                    <div class="card-content">
-
-                        <h3>🤍 白猫</h3>
-
-                        <p>
-                            真っ白な毛が美しい猫。
-                            上品でかわいらしい印象があります。
-                        </p>
-
-                    </div>
-
+                <div class="place">
+                    <h3>Yangon</h3>
+                    <p>
+                        Yangon is Myanmar's largest city and is home
+                        to the famous Shwedagon Pagoda.
+                    </p>
                 </div>
 
-
-                <!-- 黒猫 -->
-                <div class="card">
-
-                    <img
-                        src="https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?auto=format&fit=crop&w=800&q=80"
-                        alt="黒猫">
-
-                    <div class="card-content">
-
-                        <h3>🖤 黒猫</h3>
-
-                        <p>
-                            美しい黒い毛が特徴の猫。
-                            ミステリアスな雰囲気も魅力の一つです。
-                        </p>
-
-                    </div>
-
+                <div class="place">
+                    <h3>Inle Lake</h3>
+                    <p>
+                        Inle Lake is famous for its beautiful scenery
+                        and unique traditional fishing culture.
+                    </p>
                 </div>
 
             </div>
-
         </section>
 
+        <!-- Culture -->
+        <section id="culture">
+            <h2>Myanmar Culture</h2>
 
-        <!-- 豆知識 -->
-        <section id="tips">
+            <p>
+                Myanmar has a rich cultural heritage influenced by
+                Buddhism and many different ethnic groups.
+            </p>
 
-            <h2>💡 猫の豆知識</h2>
-
-            <div class="tips">
-
-                <ul>
-
-                    <li>🐾 猫は高い場所が好きです。</li>
-
-                    <li>😴 猫は一日の多くの時間を寝て過ごします。</li>
-
-                    <li>👂 猫の耳はさまざまな方向に動かすことができます。</li>
-
-                    <li>🐈 猫は優れたバランス感覚を持っています。</li>
-
-                    <li>❤️ 猫はゴロゴロと喉を鳴らしてリラックスすることがあります。</li>
-
-                </ul>
-
-            </div>
-
+            <p>
+                Traditional festivals, food, music, dance, and
+                handicrafts are important parts of Myanmar culture.
+            </p>
         </section>
 
     </main>
 
-
-    <!-- フッター -->
+    <!-- Footer -->
     <footer>
+        <p>Contact: myanmar@example.com</p>
 
         <p>
-            © 2026 猫の世界
-        </p>
-
-        <p>
-            <a href="#">Instagram</a>
-            <a href="#">X</a>
             <a href="#">Facebook</a>
+            <a href="#">Instagram</a>
+            <a href="#">YouTube</a>
         </p>
 
+        <p>&copy; 2026 Discover Myanmar</p>
     </footer>
 
 </body>
