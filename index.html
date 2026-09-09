@@ -4,309 +4,422 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Snake Game</title>
+
+    <title>スイス観光ガイド</title>
 
     <style>
         * {
+            margin: 0;
+            padding: 0;
             box-sizing: border-box;
         }
 
         body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-            background: #111827;
+            font-family:
+                "Noto Sans JP",
+                "Yu Gothic",
+                "Hiragino Kaku Gothic ProN",
+                Meiryo,
+                sans-serif;
+            line-height: 1.8;
+            background-color: #f5f5f5;
+            color: #333;
+        }
+
+        /* ヘッダー */
+        header {
+            background-color: #d71920;
             color: white;
+            padding: 20px 50px;
+
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        header h1 {
+            font-size: 28px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin-left: 25px;
+            font-weight: bold;
+        }
+
+        nav a:hover {
+            text-decoration: underline;
+        }
+
+        /* メインビジュアル */
+        .hero {
+            height: 500px;
+
+            background:
+                linear-gradient(
+                    rgba(0, 0, 0, 0.35),
+                    rgba(0, 0, 0, 0.35)
+                ),
+                url("https://images.unsplash.com/photo-1527668752968-14dc70a27c95?auto=format&fit=crop&w=1600&q=80");
+
+            background-size: cover;
+            background-position: center;
+
             display: flex;
             justify-content: center;
             align-items: center;
-            min-height: 100vh;
-        }
 
-        .game-container {
             text-align: center;
+            color: white;
         }
 
-        h1 {
-            margin-bottom: 10px;
-            color: #22c55e;
-        }
-
-        .score {
-            font-size: 24px;
+        .hero-content h2 {
+            font-size: 55px;
             margin-bottom: 15px;
         }
 
-        canvas {
-            background: #1f2937;
-            border: 4px solid #22c55e;
-            border-radius: 8px;
-            display: block;
+        .hero-content p {
+            font-size: 22px;
+        }
+
+        /* メイン */
+        main {
+            max-width: 1100px;
+            margin: auto;
+            padding: 50px 20px;
+        }
+
+        section {
+            margin-bottom: 60px;
+        }
+
+        section h2 {
+            text-align: center;
+            color: #d71920;
+            font-size: 32px;
+            margin-bottom: 25px;
+        }
+
+        .intro {
+            text-align: center;
+            font-size: 18px;
+            max-width: 800px;
             margin: auto;
         }
 
-        button {
-            margin-top: 20px;
-            padding: 12px 25px;
-            font-size: 18px;
-            border: none;
-            border-radius: 8px;
-            background: #22c55e;
-            color: white;
-            cursor: pointer;
-        }
-
-        button:hover {
-            background: #16a34a;
-        }
-
-        .controls {
-            margin-top: 20px;
+        /* 観光地 */
+        .places {
             display: grid;
-            grid-template-columns: repeat(3, 60px);
-            gap: 5px;
-            justify-content: center;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
         }
 
-        .controls button {
-            margin: 0;
-            padding: 15px;
-            font-size: 20px;
+        .card {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+
+            transition: transform 0.3s;
         }
 
-        .up {
-            grid-column: 2;
+        .card:hover {
+            transform: translateY(-8px);
         }
 
-        .left {
-            grid-column: 1;
-            grid-row: 2;
+        .card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
         }
 
-        .down {
-            grid-column: 2;
-            grid-row: 2;
+        .card-content {
+            padding: 20px;
         }
 
-        .right {
-            grid-column: 3;
-            grid-row: 2;
+        .card-content h3 {
+            color: #d71920;
+            margin-bottom: 10px;
+            font-size: 22px;
         }
 
-        #message {
-            margin-top: 15px;
-            font-size: 20px;
-            color: #f87171;
-            min-height: 25px;
+        /* スイスの基本情報 */
+        .facts {
+            background-color: white;
+            padding: 30px;
+
+            border-radius: 10px;
+
+            box-shadow:
+                0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .facts ul {
+            list-style: none;
+        }
+
+        .facts li {
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .facts li:last-child {
+            border-bottom: none;
+        }
+
+        /* フッター */
+        footer {
+            background-color: #222;
+            color: white;
+
+            text-align: center;
+
+            padding: 30px 20px;
+        }
+
+        footer a {
+            color: white;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+
+        footer a:hover {
+            color: #d71920;
+        }
+
+        /* スマートフォン対応 */
+        @media (max-width: 768px) {
+
+            header {
+                flex-direction: column;
+                gap: 15px;
+                padding: 20px;
+            }
+
+            nav a {
+                margin: 0 8px;
+            }
+
+            .hero {
+                height: 400px;
+            }
+
+            .hero-content h2 {
+                font-size: 38px;
+            }
+
+            .hero-content p {
+                font-size: 18px;
+            }
+
+            .places {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
 
 <body>
 
-<div class="game-container">
+    <!-- ヘッダー -->
+    <header>
 
-    <h1>🐍 Snake Game</h1>
+        <h1>🇨🇭 スイス観光ガイド</h1>
 
-    <div class="score">
-        Score: <span id="score">0</span>
+        <nav>
+            <a href="#about">スイスについて</a>
+            <a href="#places">観光地</a>
+            <a href="#facts">基本情報</a>
+        </nav>
+
+    </header>
+
+
+    <!-- メインビジュアル -->
+    <div class="hero">
+
+        <div class="hero-content">
+
+            <h2>美しい国、スイス</h2>
+
+            <p>
+                アルプスの山々と美しい湖が広がる魅力的な国
+            </p>
+
+        </div>
+
     </div>
 
-    <canvas id="gameCanvas" width="400" height="400"></canvas>
 
-    <div id="message"></div>
+    <!-- メインコンテンツ -->
+    <main>
 
-    <button onclick="restartGame()">Restart</button>
+        <!-- スイスについて -->
+        <section id="about">
 
-    <div class="controls">
-        <button class="up" onclick="changeDirection('up')">⬆️</button>
-        <button class="left" onclick="changeDirection('left')">⬅️</button>
-        <button class="down" onclick="changeDirection('down')">⬇️</button>
-        <button class="right" onclick="changeDirection('right')">➡️</button>
-    </div>
+            <h2>スイスについて</h2>
 
-</div>
+            <p class="intro">
+                スイスはヨーロッパの中央部に位置する美しい国です。
+                アルプス山脈をはじめとする雄大な自然や、美しい湖、
+                歴史的な街並みで知られています。
+                また、スイスチョコレートや高級時計なども有名です。
+            </p>
 
-<script>
-    const canvas = document.getElementById("gameCanvas");
-    const ctx = canvas.getContext("2d");
+        </section>
 
-    const box = 20;
-    const canvasSize = 400;
 
-    let snake;
-    let food;
-    let direction;
-    let nextDirection;
-    let score;
-    let game;
+        <!-- 人気観光地 -->
+        <section id="places">
 
-    function startGame() {
-        snake = [
-            { x: 200, y: 200 },
-            { x: 180, y: 200 },
-            { x: 160, y: 200 }
-        ];
+            <h2>おすすめ観光地</h2>
 
-        direction = "right";
-        nextDirection = "right";
-        score = 0;
+            <div class="places">
 
-        document.getElementById("score").textContent = score;
-        document.getElementById("message").textContent = "";
+                <!-- カード1 -->
+                <div class="card">
 
-        createFood();
+                    <img
+                        src="https://images.unsplash.com/photo-1500534623283-312aade485b7?auto=format&fit=crop&w=800&q=80"
+                        alt="スイスアルプス">
 
-        clearInterval(game);
-        game = setInterval(drawGame, 100);
-    }
+                    <div class="card-content">
 
-    function drawGame() {
-        direction = nextDirection;
+                        <h3>🏔️ スイスアルプス</h3>
 
-        ctx.fillStyle = "#1f2937";
-        ctx.fillRect(0, 0, canvasSize, canvasSize);
+                        <p>
+                            スイスを代表する雄大な山々。
+                            ハイキングやスキーなど、
+                            四季を通して自然を楽しむことができます。
+                        </p>
 
-        // 食べ物
-        ctx.fillStyle = "#ef4444";
-        ctx.fillRect(food.x, food.y, box, box);
+                    </div>
 
-        // 蛇
-        snake.forEach((part, index) => {
-            ctx.fillStyle = index === 0 ? "#22c55e" : "#4ade80";
-            ctx.fillRect(part.x, part.y, box, box);
+                </div>
 
-            ctx.strokeStyle = "#166534";
-            ctx.strokeRect(part.x, part.y, box, box);
-        });
 
-        let head = {
-            x: snake[0].x,
-            y: snake[0].y
-        };
+                <!-- カード2 -->
+                <div class="card">
 
-        if (direction === "W") {
-            head.y -= box;
-        }
+                    <img
+                        src="https://images.unsplash.com/photo-1530122037265-a5f1f91d3b99?auto=format&fit=crop&w=800&q=80"
+                        alt="スイスの湖">
 
-        if (direction === "S") {
-            head.y += box;
-        }
+                    <div class="card-content">
 
-        if (direction === "A") {
-            head.x -= box;
-        }
+                        <h3>🏞️ 美しい湖</h3>
 
-        if (direction === "D") {
-            head.x += box;
-        }
+                        <p>
+                            スイスには美しい湖が数多くあります。
+                            山々と湖が作り出す景色は、
+                            スイス旅行の大きな魅力の一つです。
+                        </p>
 
-        // 壁に衝突
-        if (
-            head.x < 0 ||
-            head.y < 0 ||
-            head.x >= canvasSize ||
-            head.y >= canvasSize
-        ) {
-            gameOver();
-            return;
-        }
+                    </div>
 
-        // 自分自身に衝突
-        for (let i = 0; i < snake.length; i++) {
-            if (
-                head.x === snake[i].x &&
-                head.y === snake[i].y
-            ) {
-                gameOver();
-                return;
-            }
-        }
+                </div>
 
-        snake.unshift(head);
 
-        // 食べ物を食べた
-        if (
-            head.x === food.x &&
-            head.y === food.y
-        ) {
-            score++;
-            document.getElementById("score").textContent = score;
-            createFood();
-        } else {
-            snake.pop();
-        }
-    }
+                <!-- カード3 -->
+                <div class="card">
 
-    function createFood() {
-        food = {
-            x: Math.floor(Math.random() * (canvasSize / box)) * box,
-            y: Math.floor(Math.random() * (canvasSize / box)) * box
-        };
+                    <img
+                        src="https://images.unsplash.com/photo-1529154036614-a60975f5c760?auto=format&fit=crop&w=800&q=80"
+                        alt="スイスの街">
 
-        // 蛇と食べ物が重ならないようにする
-        for (let part of snake) {
-            if (part.x === food.x && part.y === food.y) {
-                createFood();
-                return;
-            }
-        }
-    }
+                    <div class="card-content">
 
-    function changeDirection(newDirection) {
+                        <h3>🏘️ スイスの街</h3>
 
-        if (newDirection === "up" && direction !== "down") {
-            nextDirection = "up";
-        }
+                        <p>
+                            チューリッヒ、ジュネーブ、ベルン、
+                            ルツェルンなど、美しい街を
+                            観光することができます。
+                        </p>
 
-        if (newDirection === "down" && direction !== "up") {
-            nextDirection = "down";
-        }
+                    </div>
 
-        if (newDirection === "left" && direction !== "right") {
-            nextDirection = "left";
-        }
+                </div>
 
-        if (newDirection === "right" && direction !== "left") {
-            nextDirection = "right";
-        }
-    }
+            </div>
 
-    function gameOver() {
-        clearInterval(game);
+        </section>
 
-        document.getElementById("message").textContent =
-            "💥 Game Over!";
 
-        // 少し遅れて再スタート可能
-    }
+        <!-- 基本情報 -->
+        <section id="facts">
 
-    function restartGame() {
-        startGame();
-    }
+            <h2>スイスの基本情報</h2>
 
-    // キーボード操作
-    document.addEventListener("keydown", function(event) {
+            <div class="facts">
 
-        if (event.key === "ArrowUp") {
-            changeDirection("up");
-        }
+                <ul>
 
-        if (event.key === "ArrowDown") {
-            changeDirection("down");
-        }
+                    <li>
+                        🇨🇭 <strong>国名：</strong>
+                        スイス連邦
+                    </li>
 
-        if (event.key === "ArrowLeft") {
-            changeDirection("left");
-        }
+                    <li>
+                        🏛️ <strong>首都：</strong>
+                        ベルン
+                    </li>
 
-        if (event.key === "ArrowRight") {
-            changeDirection("right");
-        }
-    });
+                    <li>
+                        🗣️ <strong>公用語：</strong>
+                        ドイツ語・フランス語・イタリア語・ロマンシュ語
+                    </li>
 
-    // ゲーム開始
-    startGame();
-</script>
+                    <li>
+                        🏔️ <strong>有名なもの：</strong>
+                        アルプス山脈
+                    </li>
+
+                    <li>
+                        🍫 <strong>名物：</strong>
+                        スイスチョコレート
+                    </li>
+
+                    <li>
+                        ⌚ <strong>産業：</strong>
+                        時計産業
+                    </li>
+
+                </ul>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- フッター -->
+    <footer>
+
+        <p>
+            © 2026 スイス観光ガイド
+        </p>
+
+        <p>
+
+            <a href="#">
+                Instagram
+            </a>
+
+            <a href="#">
+                Facebook
+            </a>
+
+            <a href="#">
+                X
+            </a>
+
+        </p>
+
+    </footer>
 
 </body>
 </html>
