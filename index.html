@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>シンプルWebサイト</title>
+
+```
+<style>
+    /* ページ全体 */
+    body {
+        margin: 0;
+        padding-bottom: 140px;
+        font-family: Arial, sans-serif;
+        background-color: #f5f5f5;
+        color: #333;
+    }
+
+    /* header */
+    header {
+        background-color: #440000;
+        color: white;
+        text-align: center;
+        padding: 25px;
+    }
+
+    header h1 {
+        color: #ffff00;
+        margin: 0;
+    }
+
+    /* main */
+    main {
+        max-width: 800px;
+        margin: 40px auto;
+        padding: 0 20px;
+        color: #cc0000;
+    }
+
+    /* セクション */
+    section {
+        background-color: #440000;
+        padding: 25px;
+        margin-bottom: 25px;
+        border-radius: 10px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+
+        /* アニメーション */
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    /* マウスを乗せたとき */
+    section:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+    }
+
+    section h2 {
+        color: white;
+    }
+
+    section p {
+        color: white;
+        line-height: 1.8;
+    }
+
+    h2 {
+        border-left: 5px solid #ffff00;
+        padding-left: 10px;
+    }
+
+    /* 挨拶ボタン */
+    .hello-button {
+        display: block;
+        margin: 30px auto;
+        padding: 12px 30px;
+        background-color: #cc0000;
+        color: white;
+        border: none;
+        border-radius: 25px;
+        font-size: 16px;
+        cursor: pointer;
+        transition: 0.3s;
+    }
+
+    .hello-button:hover {
+        background-color: #990000;
+        transform: scale(1.05);
+    }
+
+    /* 挨拶メッセージ */
+    #message {
+        text-align: center;
+        font-size: 20px;
+        font-weight: bold;
+        color: #cc0000;
+        min-height: 30px;
+    }
+
+    /* footer */
+    footer {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        background-color: #440000;
+        color: white;
+        text-align: center;
+        padding: 15px 0;
+    }
+
+    footer p {
+        margin: 5px;
+    }
+
+    /* SNSリンク */
+    .social-links a {
+        color: white;
+        margin: 0 10px;
+        text-decoration: none;
+        transition: 0.3s;
+    }
+
+    .social-links a:hover {
+        color: #ffff00;
+        text-decoration: underline;
+    }
+</style>
+```
+
+</head>
+
+<body>
+
+```
+<!-- ヘッダー -->
+<header>
+    <h1>About Me</h1>
+</header>
+
+<!-- メインコンテンツ -->
+<main>
+
+    <section>
+        <h2>自己紹介</h2>
+        <p>
+            初めまして、イェインミンテュです。
+        </p>
+    </section>
+
+    <section>
+        <h2>趣味・好きなこと</h2>
+        <p>
+            スポーツや体を動かすことが好きです。
+            Webサイト制作にも興味があります。
+        </p>
+    </section>
+
+    <!-- 追加した機能 -->
+    <button class="hello-button" onclick="showMessage()">
+        終了！
+    </button>
+
+    <p id="message"></p>
+
+</main>
+
+<!-- フッター -->
+<footer>
+    <p>お問い合わせ：example@example.com</p>
+
+    <div class="social-links">
+        <a href="#">X（Twitter）</a>
+        <a href="#">Instagram</a>
+        <a href="#">Facebook</a>
+    </div>
+
+    <p>&copy; 2026 My Web Site</p>
+</footer>
+
+<!-- JavaScript -->
+<script>
+    function showMessage() {
+        document.getElementById("message").textContent =
+            "最後までお読みいただきありがとうございました。";
+    }
+</script>
+```
+
+</body>
+</html>
