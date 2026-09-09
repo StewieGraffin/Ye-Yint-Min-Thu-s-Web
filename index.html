@@ -5,140 +5,425 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>ミャンマーの魅力</title>
+    <title>Myanmar Journey | ミャンマーの魅力</title>
 
     <style>
-        /* ===== 全体 ===== */
+        /* =========================
+           基本設定
+        ========================= */
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
-            font-family: "Yu Gothic", "Hiragino Kaku Gothic ProN",
-                         Meiryo, sans-serif;
-            line-height: 1.8;
+            font-family:
+                "Yu Gothic",
+                "Hiragino Kaku Gothic ProN",
+                Meiryo,
+                sans-serif;
+
             color: #333;
-            background-color: #f5f5f5;
+            background: #f8f7f2;
+            line-height: 1.8;
         }
 
-        /* ===== ヘッダー ===== */
-        header {
-            background: linear-gradient(135deg, #f4c542, #e63946);
-            color: white;
-            text-align: center;
-            padding: 40px 20px;
-        }
+        /* =========================
+           ナビゲーション
+        ========================= */
 
-        header h1 {
-            font-size: 40px;
-            margin-bottom: 10px;
-        }
-
-        header p {
-            font-size: 18px;
-        }
-
-        /* ===== ナビゲーション ===== */
         nav {
-            background-color: #333;
-            text-align: center;
-            padding: 15px;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            padding: 15px 7%;
+
+            background: rgba(0, 0, 0, 0.75);
+            backdrop-filter: blur(10px);
+        }
+
+        .logo {
+            color: white;
+            font-size: 22px;
+            font-weight: bold;
+            letter-spacing: 2px;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 30px;
         }
 
         nav a {
             color: white;
             text-decoration: none;
-            margin: 0 20px;
-            font-weight: bold;
+            font-size: 14px;
+            transition: 0.3s;
         }
 
         nav a:hover {
-            color: #f4c542;
+            color: #ffd43b;
         }
 
-        /* ===== メイン ===== */
-        main {
-            max-width: 1000px;
-            margin: 40px auto;
-            padding: 0 20px;
+        /* =========================
+           ヒーロー
+        ========================= */
+
+        .hero {
+            height: 100vh;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+
+            color: white;
+
+            background:
+                linear-gradient(
+                    rgba(0, 0, 0, 0.45),
+                    rgba(0, 0, 0, 0.55)
+                ),
+                url("https://images.unsplash.com/photo-1548013146-72479768bada?auto=format&fit=crop&w=2000&q=80");
+
+            background-size: cover;
+            background-position: center;
         }
+
+        .hero-content {
+            max-width: 800px;
+            padding: 20px;
+        }
+
+        .hero h1 {
+            font-size: clamp(50px, 8vw, 100px);
+            letter-spacing: 8px;
+            margin-bottom: 15px;
+        }
+
+        .hero p {
+            font-size: 20px;
+            margin-bottom: 30px;
+        }
+
+        .hero-button {
+            display: inline-block;
+
+            padding: 13px 35px;
+
+            background: #ffd43b;
+            color: #333;
+
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+
+            transition: 0.3s;
+        }
+
+        .hero-button:hover {
+            transform: translateY(-5px);
+            background: white;
+        }
+
+        /* =========================
+           共通セクション
+        ========================= */
 
         section {
-            background-color: white;
-            margin-bottom: 30px;
-            padding: 30px;
-            border-radius: 12px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            padding: 100px 8%;
         }
 
-        section h2 {
-            color: #e63946;
-            margin-bottom: 15px;
-            font-size: 28px;
-            border-left: 5px solid #f4c542;
-            padding-left: 10px;
-        }
-
-        section p {
-            margin-bottom: 10px;
-        }
-
-        /* ===== 観光地 ===== */
-        .places {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 20px;
-            margin-top: 20px;
-        }
-
-        .place {
-            background-color: #fafafa;
-            padding: 20px;
-            border-radius: 10px;
+        .section-title {
             text-align: center;
-            border: 1px solid #ddd;
+            margin-bottom: 50px;
         }
 
-        .place h3 {
-            color: #333;
+        .section-title span {
+            color: #d62828;
+            font-size: 14px;
+            font-weight: bold;
+            letter-spacing: 3px;
+        }
+
+        .section-title h2 {
+            font-size: 40px;
+            margin-top: 8px;
+        }
+
+        /* =========================
+           About
+        ========================= */
+
+        .about {
+            max-width: 1000px;
+            margin: auto;
+
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .about-image {
+            height: 400px;
+
+            background:
+                url("https://images.unsplash.com/photo-1590736969955-71cc94901144?auto=format&fit=crop&w=1000&q=80");
+
+            background-size: cover;
+            background-position: center;
+
+            border-radius: 20px;
+
+            box-shadow: 15px 15px 0 #ffd43b;
+        }
+
+        .about-text h3 {
+            font-size: 30px;
+            margin-bottom: 20px;
+        }
+
+        .about-text p {
+            margin-bottom: 15px;
+            color: #666;
+        }
+
+        /* =========================
+           観光地
+        ========================= */
+
+        .places {
+            max-width: 1200px;
+            margin: auto;
+
+            display: grid;
+            grid-template-columns:
+                repeat(3, 1fr);
+
+            gap: 25px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 18px;
+            overflow: hidden;
+
+            box-shadow:
+                0 10px 30px rgba(0,0,0,0.08);
+
+            transition: 0.4s;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+
+            box-shadow:
+                0 20px 40px rgba(0,0,0,0.15);
+        }
+
+        .card-image {
+            height: 220px;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .bagan {
+            background-image:
+                url("https://images.unsplash.com/photo-1603114595742-7d7b4c4d8b43?auto=format&fit=crop&w=1000&q=80");
+        }
+
+        .yangon {
+            background-image:
+                url("https://images.unsplash.com/photo-1557750255-c76072a7aad1?auto=format&fit=crop&w=1000&q=80");
+        }
+
+        .inle {
+            background-image:
+                url("https://images.unsplash.com/photo-1528181304800-259b08848526?auto=format&fit=crop&w=1000&q=80");
+        }
+
+        .card-content {
+            padding: 25px;
+        }
+
+        .card-content h3 {
+            font-size: 24px;
             margin-bottom: 10px;
         }
 
-        .place p {
+        .card-content p {
+            color: #777;
             font-size: 14px;
         }
 
-        /* ===== フッター ===== */
-        footer {
-            background-color: #222;
+        /* =========================
+           水かけ祭り
+        ========================= */
+
+        .festival {
             color: white;
+
+            background:
+                linear-gradient(
+                    rgba(0, 80, 100, 0.75),
+                    rgba(0, 40, 60, 0.85)
+                ),
+                url("https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=2000&q=80");
+
+            background-size: cover;
+            background-position: center;
+
             text-align: center;
-            padding: 25px;
+        }
+
+        .festival-content {
+            max-width: 850px;
+            margin: auto;
+        }
+
+        .festival h2 {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+
+        .festival h3 {
+            color: #ffd43b;
+            font-size: 25px;
+            margin-bottom: 20px;
+        }
+
+        .festival p {
+            font-size: 17px;
+            margin-bottom: 15px;
+        }
+
+        .water-icon {
+            font-size: 60px;
+            margin-bottom: 15px;
+        }
+
+        /* =========================
+           文化
+        ========================= */
+
+        .culture {
+            max-width: 900px;
+            margin: auto;
+            text-align: center;
+        }
+
+        .culture-items {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
             margin-top: 40px;
+            flex-wrap: wrap;
         }
 
-        footer a {
-            color: #f4c542;
+        .culture-item {
+            width: 200px;
+            padding: 25px;
+
+            background: white;
+            border-radius: 15px;
+
+            transition: 0.3s;
+        }
+
+        .culture-item:hover {
+            transform: scale(1.05);
+        }
+
+        .culture-item .icon {
+            font-size: 40px;
+            margin-bottom: 10px;
+        }
+
+        /* =========================
+           フッター
+        ========================= */
+
+        footer {
+            background: #171717;
+            color: white;
+
+            text-align: center;
+            padding: 50px 20px;
+        }
+
+        footer h2 {
+            margin-bottom: 10px;
+        }
+
+        footer p {
+            color: #aaa;
+            margin-bottom: 20px;
+        }
+
+        .social {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            margin-bottom: 25px;
+        }
+
+        .social a {
+            color: #ffd43b;
             text-decoration: none;
-            margin: 0 10px;
+            transition: 0.3s;
         }
 
-        footer a:hover {
-            text-decoration: underline;
+        .social a:hover {
+            color: white;
         }
 
-        /* ===== スマートフォン対応 ===== */
-        @media (max-width: 700px) {
+        .copyright {
+            font-size: 13px;
+            color: #666;
+        }
 
-            header h1 {
-                font-size: 30px;
+        /* =========================
+           スマートフォン対応
+        ========================= */
+
+        @media (max-width: 800px) {
+
+            nav {
+                padding: 15px 5%;
+            }
+
+            nav ul {
+                gap: 12px;
             }
 
             nav a {
-                display: block;
-                margin: 8px 0;
+                font-size: 12px;
+            }
+
+            .hero h1 {
+                letter-spacing: 4px;
+            }
+
+            .about {
+                grid-template-columns: 1fr;
+            }
+
+            .about-image {
+                height: 300px;
             }
 
             .places {
@@ -146,7 +431,11 @@
             }
 
             section {
-                padding: 20px;
+                padding: 70px 6%;
+            }
+
+            .festival h2 {
+                font-size: 35px;
             }
         }
     </style>
@@ -154,100 +443,340 @@
 
 <body>
 
-    <!-- ヘッダー -->
-    <header>
-        <h1>🇲🇲 ミャンマーの魅力</h1>
-        <p>美しい自然・豊かな文化・長い歴史を持つ国</p>
-    </header>
+    <!-- =========================
+         ナビゲーション
+    ========================= -->
 
-    <!-- ナビゲーション -->
     <nav>
-        <a href="#about">ミャンマーについて</a>
-        <a href="#places">有名な観光地</a>
-        <a href="#culture">文化</a>
+
+        <div class="logo">
+            MYANMAR
+        </div>
+
+        <ul>
+            <li>
+                <a href="#about">ミャンマー</a>
+            </li>
+
+            <li>
+                <a href="#places">観光地</a>
+            </li>
+
+            <li>
+                <a href="#festival">水かけ祭り</a>
+            </li>
+
+            <li>
+                <a href="#culture">文化</a>
+            </li>
+        </ul>
+
     </nav>
 
-    <!-- メインコンテンツ -->
-    <main>
 
-        <!-- ミャンマーについて -->
-        <section id="about">
+    <!-- =========================
+         ヒーロー
+    ========================= -->
+
+    <header class="hero">
+
+        <div class="hero-content">
+
+            <h1>MYANMAR</h1>
+
+            <p>
+                神秘的な寺院と美しい自然が広がる国
+            </p>
+
+            <a
+                href="#about"
+                class="hero-button">
+                ミャンマーを知る
+            </a>
+
+        </div>
+
+    </header>
+
+
+    <!-- =========================
+         About
+    ========================= -->
+
+    <section id="about">
+
+        <div class="section-title">
+
+            <span>ABOUT MYANMAR</span>
+
             <h2>ミャンマーについて</h2>
 
-            <p>
-                ミャンマーは東南アジアに位置する美しい国です。
-                豊かな自然や歴史的な建造物、独自の文化が魅力です。
-            </p>
+        </div>
 
-            <p>
-                山や川、湖、ビーチなど、さまざまな自然を見ることができます。
-                また、多くの仏教寺院やパゴダがあり、歴史を感じることができます。
-            </p>
-        </section>
 
-        <!-- 有名な観光地 -->
-        <section id="places">
-            <h2>有名な観光地</h2>
+        <div class="about">
 
-            <div class="places">
+            <div class="about-image"></div>
 
-                <div class="place">
+            <div class="about-text">
+
+                <h3>伝統と自然が息づく国</h3>
+
+                <p>
+                    ミャンマーは東南アジアに位置する、
+                    豊かな歴史と文化を持つ国です。
+                </p>
+
+                <p>
+                    黄金色に輝くパゴダ、美しい湖、
+                    広大な自然など、多くの魅力があります。
+                </p>
+
+                <p>
+                    また、さまざまな民族が暮らしており、
+                    地域ごとに異なる文化や伝統を見ることができます。
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         観光地
+    ========================= -->
+
+    <section id="places">
+
+        <div class="section-title">
+
+            <span>TRAVEL DESTINATIONS</span>
+
+            <h2>おすすめ観光地</h2>
+
+        </div>
+
+
+        <div class="places">
+
+            <div class="card">
+
+                <div class="card-image bagan"></div>
+
+                <div class="card-content">
+
                     <h3>バガン</h3>
-                    <p>
-                        数千もの古代寺院やパゴダが残る、
-                        ミャンマーを代表する歴史的な観光地です。
-                    </p>
-                </div>
 
-                <div class="place">
-                    <h3>ヤンゴン</h3>
                     <p>
-                        ミャンマー最大級の都市の一つです。
-                        黄金に輝くシュエダゴン・パゴダが有名です。
+                        数多くの古代寺院やパゴダが広がる
+                        ミャンマーを代表する歴史的な場所です。
                     </p>
-                </div>
 
-                <div class="place">
-                    <h3>インレー湖</h3>
-                    <p>
-                        美しい湖と独特な伝統文化で知られています。
-                        足で舟をこぐ漁師も有名です。
-                    </p>
                 </div>
 
             </div>
-        </section>
 
-        <!-- 文化 -->
-        <section id="culture">
+
+            <div class="card">
+
+                <div class="card-image yangon"></div>
+
+                <div class="card-content">
+
+                    <h3>ヤンゴン</h3>
+
+                    <p>
+                        ミャンマーを代表する都市の一つ。
+                        黄金に輝くシュエダゴン・パゴダが有名です。
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="card">
+
+                <div class="card-image inle"></div>
+
+                <div class="card-content">
+
+                    <h3>インレー湖</h3>
+
+                    <p>
+                        美しい湖と独特の生活文化が魅力。
+                        足で舟をこぐ漁師も有名です。
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         水かけ祭り
+    ========================= -->
+
+    <section id="festival" class="festival">
+
+        <div class="festival-content">
+
+            <div class="water-icon">
+                💦
+            </div>
+
+            <h2>水かけ祭り</h2>
+
+            <h3>ティンジャン（Thingyan）</h3>
+
+            <p>
+                ミャンマーで毎年行われる、
+                とても有名なお祭りです。
+            </p>
+
+            <p>
+                参加する人々がお互いに水をかけ合い、
+                旧年の悪いものを洗い流して
+                新しい年を迎えます。
+            </p>
+
+            <p>
+                街中が水でいっぱいになり、
+                音楽やダンスなども楽しめる
+                ミャンマーを代表するイベントです。
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         文化
+    ========================= -->
+
+    <section id="culture">
+
+        <div class="section-title">
+
+            <span>MYANMAR CULTURE</span>
+
             <h2>ミャンマーの文化</h2>
 
-            <p>
-                ミャンマーには、仏教を中心とした豊かな文化があります。
-                また、多くの民族が暮らしているため、地域によって
-                さまざまな伝統や文化があります。
-            </p>
+        </div>
+
+
+        <div class="culture">
 
             <p>
-                伝統的なお祭り、料理、音楽、ダンス、工芸品なども
-                ミャンマー文化の大切な一部です。
+                ミャンマーには、長い歴史の中で育まれた
+                独自の文化があります。
             </p>
-        </section>
 
-    </main>
 
-    <!-- フッター -->
+            <div class="culture-items">
+
+                <div class="culture-item">
+
+                    <div class="icon">
+                        🛕
+                    </div>
+
+                    <h3>仏教</h3>
+
+                    <p>
+                        多くの人々の生活に
+                        仏教が深く関わっています。
+                    </p>
+
+                </div>
+
+
+                <div class="culture-item">
+
+                    <div class="icon">
+                        🍜
+                    </div>
+
+                    <h3>料理</h3>
+
+                    <p>
+                        モヒンガーなど、
+                        独特で豊かな料理があります。
+                    </p>
+
+                </div>
+
+
+                <div class="culture-item">
+
+                    <div class="icon">
+                        🎵
+                    </div>
+
+                    <h3>音楽</h3>
+
+                    <p>
+                        伝統的な楽器や音楽が
+                        大切にされています。
+                    </p>
+
+                </div>
+
+
+                <div class="culture-item">
+
+                    <div class="icon">
+                        🎉
+                    </div>
+
+                    <h3>お祭り</h3>
+
+                    <p>
+                        水かけ祭りなど、
+                        多くの伝統的なお祭りがあります。
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         フッター
+    ========================= -->
+
     <footer>
 
-        <p>お問い合わせ：myanmar@example.com</p>
+        <h2>MYANMAR</h2>
 
         <p>
-            <a href="#">Facebook</a>
-            <a href="#">Instagram</a>
-            <a href="#">YouTube</a>
+            ミャンマーの魅力をもっと知ろう
         </p>
 
-        <p>&copy; 2026 ミャンマーの魅力</p>
+        <div class="social">
+
+            <a href="#">Instagram</a>
+
+            <a href="#">Facebook</a>
+
+            <a href="#">YouTube</a>
+
+        </div>
+
+        <div class="copyright">
+            © 2026 Myanmar Journey. All Rights Reserved.
+        </div>
 
     </footer>
 
