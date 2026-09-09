@@ -5,9 +5,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>スイス観光ガイド</title>
+    <title>クリックゲーム</title>
 
     <style>
+
+        /* 全体 */
         * {
             margin: 0;
             padding: 0;
@@ -15,411 +17,202 @@
         }
 
         body {
-            font-family:
-                "Noto Sans JP",
-                "Yu Gothic",
-                "Hiragino Kaku Gothic ProN",
-                Meiryo,
-                sans-serif;
-            line-height: 1.8;
-            background-color: #f5f5f5;
-            color: #333;
-        }
-
-        /* ヘッダー */
-        header {
-            background-color: #d71920;
-            color: white;
-            padding: 20px 50px;
-
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        header h1 {
-            font-size: 28px;
-        }
-
-        nav a {
-            color: white;
-            text-decoration: none;
-            margin-left: 25px;
-            font-weight: bold;
-        }
-
-        nav a:hover {
-            text-decoration: underline;
-        }
-
-        /* メインビジュアル */
-        .hero {
-            height: 500px;
-
-            background:
-                linear-gradient(
-                    rgba(0, 0, 0, 0.35),
-                    rgba(0, 0, 0, 0.35)
-                ),
-                url("https://images.unsplash.com/photo-1527668752968-14dc70a27c95?auto=format&fit=crop&w=1600&q=80");
-
-            background-size: cover;
-            background-position: center;
+            font-family: Arial, "Yu Gothic", sans-serif;
+            background: #e8f5e9;
 
             display: flex;
             justify-content: center;
             align-items: center;
 
+            min-height: 100vh;
+        }
+
+        /* ゲーム画面 */
+        .game {
+            width: 600px;
+            max-width: 90%;
+
+            background: white;
+            padding: 40px;
+
+            border-radius: 20px;
+
             text-align: center;
-            color: white;
+
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
         }
 
-        .hero-content h2 {
-            font-size: 55px;
-            margin-bottom: 15px;
-        }
-
-        .hero-content p {
-            font-size: 22px;
-        }
-
-        /* メイン */
-        main {
-            max-width: 1100px;
-            margin: auto;
-            padding: 50px 20px;
-        }
-
-        section {
-            margin-bottom: 60px;
-        }
-
-        section h2 {
-            text-align: center;
-            color: #d71920;
-            font-size: 32px;
-            margin-bottom: 25px;
-        }
-
-        .intro {
-            text-align: center;
-            font-size: 18px;
-            max-width: 800px;
-            margin: auto;
-        }
-
-        /* 観光地 */
-        .places {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 25px;
-        }
-
-        .card {
-            background-color: white;
-            border-radius: 10px;
-            overflow: hidden;
-
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-
-            transition: transform 0.3s;
-        }
-
-        .card:hover {
-            transform: translateY(-8px);
-        }
-
-        .card img {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-        }
-
-        .card-content {
-            padding: 20px;
-        }
-
-        .card-content h3 {
-            color: #d71920;
+        /* タイトル */
+        h1 {
+            color: #2e7d32;
             margin-bottom: 10px;
-            font-size: 22px;
         }
 
-        /* スイスの基本情報 */
-        .facts {
-            background-color: white;
-            padding: 30px;
+        .description {
+            margin-bottom: 30px;
+            color: #555;
+        }
+
+        /* ゲームエリア */
+        .game-area {
+            position: relative;
+
+            height: 300px;
+
+            background: #f1f8e9;
+
+            border: 3px solid #81c784;
+
+            border-radius: 15px;
+
+            overflow: hidden;
+        }
+
+        /* 説明 */
+        .start-message {
+            margin-top: 30px;
+            font-size: 18px;
+            color: #555;
+        }
+
+        /* チェックボックスを非表示 */
+        input {
+            display: none;
+        }
+
+        /* ターゲットボタン */
+        .target {
+            position: absolute;
+
+            top: 120px;
+            left: 250px;
+
+            width: 70px;
+            height: 70px;
+
+            background: #e53935;
+
+            border-radius: 50%;
+
+            cursor: pointer;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            color: white;
+            font-size: 30px;
+            font-weight: bold;
+
+            transition: 0.2s;
+        }
+
+        /* クリックしたらターゲットを消す */
+        #hit:checked ~ .game-area .target {
+            display: none;
+        }
+
+        /* クリック後のメッセージ */
+        #hit:checked ~ .game-area .success {
+            display: block;
+        }
+
+        .success {
+            display: none;
+
+            position: absolute;
+
+            top: 110px;
+            left: 0;
+            right: 0;
+
+            color: #2e7d32;
+
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        /* リスタート */
+        .restart {
+            display: inline-block;
+
+            margin-top: 25px;
+
+            padding: 12px 30px;
+
+            background: #2e7d32;
+            color: white;
+
+            text-decoration: none;
+
+            border-radius: 8px;
+
+            font-weight: bold;
+        }
+
+        .restart:hover {
+            background: #1b5e20;
+        }
+
+        /* ルール */
+        .rules {
+            margin-top: 25px;
+
+            padding: 15px;
+
+            background: #fffde7;
 
             border-radius: 10px;
 
-            box-shadow:
-                0 4px 10px rgba(0, 0, 0, 0.1);
+            color: #555;
         }
 
-        .facts ul {
-            list-style: none;
-        }
-
-        .facts li {
-            padding: 10px;
-            border-bottom: 1px solid #ddd;
-        }
-
-        .facts li:last-child {
-            border-bottom: none;
-        }
-
-        /* フッター */
-        footer {
-            background-color: #222;
-            color: white;
-
-            text-align: center;
-
-            padding: 30px 20px;
-        }
-
-        footer a {
-            color: white;
-            text-decoration: none;
-            margin: 0 10px;
-        }
-
-        footer a:hover {
-            color: #d71920;
-        }
-
-        /* スマートフォン対応 */
-        @media (max-width: 768px) {
-
-            header {
-                flex-direction: column;
-                gap: 15px;
-                padding: 20px;
-            }
-
-            nav a {
-                margin: 0 8px;
-            }
-
-            .hero {
-                height: 400px;
-            }
-
-            .hero-content h2 {
-                font-size: 38px;
-            }
-
-            .hero-content p {
-                font-size: 18px;
-            }
-
-            .places {
-                grid-template-columns: 1fr;
-            }
-        }
     </style>
 </head>
 
 <body>
 
-    <!-- ヘッダー -->
-    <header>
+    <div class="game">
 
-        <h1>🇨🇭 スイス観光ガイド</h1>
+        <h1>🎯 クリックゲーム</h1>
 
-        <nav>
-            <a href="#about">スイスについて</a>
-            <a href="#places">観光地</a>
-            <a href="#facts">基本情報</a>
-        </nav>
+        <p class="description">
+            赤いボタンをクリックしよう！
+        </p>
 
-    </header>
+        <!-- ゲーム開始用 -->
+        <input type="checkbox" id="hit">
 
+        <div class="game-area">
 
-    <!-- メインビジュアル -->
-    <div class="hero">
+            <!-- ターゲット -->
+            <label for="hit" class="target">
+                ●
+            </label>
 
-        <div class="hero-content">
-
-            <h2>美しい国、スイス</h2>
-
-            <p>
-                アルプスの山々と美しい湖が広がる魅力的な国
-            </p>
+            <!-- 成功メッセージ -->
+            <div class="success">
+                🎉 HIT! 🎉
+            </div>
 
         </div>
 
+        <p class="start-message">
+            赤い丸をクリックしてゲームクリア！
+        </p>
+
+        <!-- リセット -->
+        <a href="" class="restart">
+            🔄 もう一度遊ぶ
+        </a>
+
+        <div class="rules">
+            <strong>ゲームルール</strong>
+            <br>
+            赤いターゲットをクリックするとクリアです！
+        </div>
+
     </div>
-
-
-    <!-- メインコンテンツ -->
-    <main>
-
-        <!-- スイスについて -->
-        <section id="about">
-
-            <h2>スイスについて</h2>
-
-            <p class="intro">
-                スイスはヨーロッパの中央部に位置する美しい国です。
-                アルプス山脈をはじめとする雄大な自然や、美しい湖、
-                歴史的な街並みで知られています。
-                また、スイスチョコレートや高級時計なども有名です。
-            </p>
-
-        </section>
-
-
-        <!-- 人気観光地 -->
-        <section id="places">
-
-            <h2>おすすめ観光地</h2>
-
-            <div class="places">
-
-                <!-- カード1 -->
-                <div class="card">
-
-                    <img
-                        src="https://images.unsplash.com/photo-1500534623283-312aade485b7?auto=format&fit=crop&w=800&q=80"
-                        alt="スイスアルプス">
-
-                    <div class="card-content">
-
-                        <h3>🏔️ スイスアルプス</h3>
-
-                        <p>
-                            スイスを代表する雄大な山々。
-                            ハイキングやスキーなど、
-                            四季を通して自然を楽しむことができます。
-                        </p>
-
-                    </div>
-
-                </div>
-
-
-                <!-- カード2 -->
-                <div class="card">
-
-                    <img
-                        src="https://images.unsplash.com/photo-1530122037265-a5f1f91d3b99?auto=format&fit=crop&w=800&q=80"
-                        alt="スイスの湖">
-
-                    <div class="card-content">
-
-                        <h3>🏞️ 美しい湖</h3>
-
-                        <p>
-                            スイスには美しい湖が数多くあります。
-                            山々と湖が作り出す景色は、
-                            スイス旅行の大きな魅力の一つです。
-                        </p>
-
-                    </div>
-
-                </div>
-
-
-                <!-- カード3 -->
-                <div class="card">
-
-                    <img
-                        src="https://images.unsplash.com/photo-1529154036614-a60975f5c760?auto=format&fit=crop&w=800&q=80"
-                        alt="スイスの街">
-
-                    <div class="card-content">
-
-                        <h3>🏘️ スイスの街</h3>
-
-                        <p>
-                            チューリッヒ、ジュネーブ、ベルン、
-                            ルツェルンなど、美しい街を
-                            観光することができます。
-                        </p>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-        </section>
-
-
-        <!-- 基本情報 -->
-        <section id="facts">
-
-            <h2>スイスの基本情報</h2>
-
-            <div class="facts">
-
-                <ul>
-
-                    <li>
-                        🇨🇭 <strong>国名：</strong>
-                        スイス連邦
-                    </li>
-
-                    <li>
-                        🏛️ <strong>首都：</strong>
-                        ベルン
-                    </li>
-
-                    <li>
-                        🗣️ <strong>公用語：</strong>
-                        ドイツ語・フランス語・イタリア語・ロマンシュ語
-                    </li>
-
-                    <li>
-                        🏔️ <strong>有名なもの：</strong>
-                        アルプス山脈
-                    </li>
-
-                    <li>
-                        🍫 <strong>名物：</strong>
-                        スイスチョコレート
-                    </li>
-
-                    <li>
-                        ⌚ <strong>産業：</strong>
-                        時計産業
-                    </li>
-
-                </ul>
-
-            </div>
-
-        </section>
-
-    </main>
-
-
-    <!-- フッター -->
-    <footer>
-
-        <p>
-            © 2026 スイス観光ガイド
-        </p>
-
-        <p>
-
-            <a href="#">
-                Instagram
-            </a>
-
-            <a href="#">
-                Facebook
-            </a>
-
-            <a href="#">
-                X
-            </a>
-
-        </p>
-
-    </footer>
 
 </body>
 </html>
